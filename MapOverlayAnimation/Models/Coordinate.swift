@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+typealias Coordinate = Double
+
+struct Coordinates: Codable, Hashable {
+
+    enum CodingKeys: String, CodingKey {
+        case latitude = "lat"
+        case longitude = "lon"
+    }
+
+    let latitude: Coordinate
+    let longitude: Coordinate
+}

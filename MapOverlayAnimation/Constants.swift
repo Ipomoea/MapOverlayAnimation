@@ -6,4 +6,14 @@
 //  Copyright © 2019 Pavel Lukandiy. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+typealias VoidClosure = () -> Void
+typealias ParameterClosure<Input> = (Input) -> Void
+
+enum Constants {
+
+    static let defaultPadding: CGFloat = 16.0
+
+    static let defaultSpacing: CGFloat = 8.0
+}

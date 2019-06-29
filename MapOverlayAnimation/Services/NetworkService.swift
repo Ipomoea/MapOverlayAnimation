@@ -1,13 +1,12 @@
 //
 //  NetworkService.swift
-//  Currencies
+//  MapOverlayAnimation
 //
-//  Created by Pavel Lukandiy on 02/12/2018.
-//  Copyright © 2018 Pavel Lukandiy. All rights reserved.
+//  Created by Pavel Lukandiy on 28.06.2019.
+//  Copyright © 2019 Pavel Lukandiy. All rights reserved.
 //
 
 import Alamofire
-import Tangerine
 
 final class NetworkService {
 
@@ -16,35 +15,39 @@ final class NetworkService {
     private let sessionManager = SessionManager.default
     private let decoder = JSONDecoder()
 
-    private enum CurrencyRouter: Alamofire.URLRequestConvertible {
+    private enum PlacesRouter: Alamofire.URLRequestConvertible {
 
-        private static let baseURLString = "https://revolut.duckdns.org/"
+        private static let baseURLString = "http://places.aviasales.ru"
 
-        case currencies(currency: Currency)
+        case places(term: String, locale: String)
 
         private var method: HTTPMethod {
             switch self {
-            case .currencies:
+            case .places:
                 return .get
             }
         }
 
         private var path: String {
             switch self {
-            case .currencies:
-                return "/latest"
+            case .places:
+                return "/places"
             }
         }
 
         func asURLRequest() throws -> URLRequest {
-            let url = try CurrencyRouter.baseURLString.asURL()
+            let url = try PlacesRouter.baseURLString.asURL()
 
             var urlRequest = URLRequest(url: url.appendingPathComponent(path))
             urlRequest.httpMethod = method.rawValue
 
             switch self {
-            case .currencies(let currency):
-                urlRequest = try URLEncoding.default.encode(urlRequest, with: ["base": currency])
+            case .places(let term, let locale):
+                let parameters: [String: String] = [
+                    "term": term,
+                    "locale": locale
+                ]
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             }
 
             return urlRequest
@@ -86,22 +89,22 @@ final class NetworkService {
         }
     }
 
-    private func request<T: Decodable>(router: URLRequestConvertible, resultClosure: @escaping ParameterClosure<Result<T>>) {
-        sessionManager
-            .request(router)
-            .responseData(queue: .global(qos: .default)) { [unowned decoder] in
-                resultClosure(decoder.decodeResponse(from: $0))
-            }
+    private func request<T: Decodable>(router: URLRequestConvertible, resultClosure: @escaping ParameterClosure<Result<T>>) -> Cancelable {
+        let request = sessionManager.request(router)
+        request.responseData(queue: .global(qos: .default)) { [unowned decoder] in
+            resultClosure(decoder.decodeResponse(from: $0))
+        }
+        return request
     }
 }
 
 extension NetworkService {
 
-    func getCurrencies(from currency: Currency, resultClosure: @escaping ParameterClosure<Result<CurrencyResponse>>) {
-        request(router: CurrencyRouter.currencies(currency: currency), resultClosure: resultClosure)
+    func getPlaces(from term: String, locale: String, resultClosure: @escaping ParameterClosure<Result<AirportList>>) -> Cancelable {
+        return request(router: PlacesRouter.places(term: term, locale: locale), resultClosure: resultClosure)
     }
 
-    func getCountries(resultClosure: @escaping ParameterClosure<Result<[Country]>>) {
-        request(router: CountryRouter.allCountries, resultClosure: resultClosure)
+    func getCountries(resultClosure: @escaping ParameterClosure<Result<[Country]>>) -> Cancelable {
+        return request(router: CountryRouter.allCountries, resultClosure: resultClosure)
     }
 }

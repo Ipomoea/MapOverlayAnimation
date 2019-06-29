@@ -12,15 +12,17 @@ import DeepDiff
 /// Helper class with implemented `reloadTableView(initialLoad: Bool)` function
 /// Just set view models to `cellViewModels` in `ReloadableTableViewModel` and they wil be shown autpmatically
 /// Works with only one type of cell
-open class ReloadableTableViewController<Cell: UITableViewCell & ConfigurableCell, ViewModel: ReloadableTableViewModel<Cell.ViewModelT>>: TableViewController<ViewModel> {
+class ReloadableTableViewController<Cell: UITableViewCell & ConfigurableCell, ViewModel: ReloadableTableViewModel<Cell.ViewModelT>>: TableViewController<ViewModel> {
 
-    open var reloadAnimation: UITableView.RowAnimation { .none }
+    var reloadAnimation: UITableView.RowAnimation {
+        return .none
+    }
 
     private var rows: [TableRow<Cell>] = [] {
         didSet { sections = [TableSection(rows)] }
     }
 
-    override open func reloadTableView(initialLoad: Bool) {
+    override func reloadTableView(initialLoad: Bool) {
         super.reloadTableView(initialLoad: initialLoad)
 
         let updatedRows = viewModel.cellViewModels.map { TableRow<Cell>(cellViewModel: $0) }
@@ -38,5 +40,18 @@ open class ReloadableTableViewController<Cell: UITableViewCell & ConfigurableCel
                 updateData: { }
             )
         }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        super.tableView(tableView, didSelectRowAt: indexPath)
+        didSelectViewModel(cellViewModel(at: indexPath))
+    }
+
+    func didSelectViewModel(_ cellViewModel: Cell.ViewModelT) {
+        viewModel.selectViewModel(cellViewModel)
+    }
+
+    func cellViewModel(at indexPath: IndexPath) -> Cell.ViewModelT {
+        return cellViewModel(at: indexPath, cellType: Cell.self)
     }
 }

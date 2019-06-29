@@ -8,15 +8,17 @@
 
 import UIKit
 
-open class StateViewController<ViewModelT: ViewModel>: ViewController<ViewModelT>, StateManagerDelegate {
+class StateViewController<ViewModelT: ControllerViewModel>: ViewController<ViewModelT>, StateManagerDelegate {
 
-    public let contentView = UIView()
+    let contentView = UIView()
 
-    public var currentState: ScreenState { stateManager.currentState }
+    var currentState: ScreenState {
+        return stateManager.currentState
+    }
 
     private lazy var stateManager = StateManager(delegate: self)
 
-    override open func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         view.addSubview(contentView)
@@ -24,21 +26,21 @@ open class StateViewController<ViewModelT: ViewModel>: ViewController<ViewModelT
         setupContentViewConstraints()
     }
 
-    open func setupContentViewConstraints() {
+    func setupContentViewConstraints() {
         contentView.pinToSuperview()
     }
 
-    open func retry() { }
+    func retry() { }
 
-    open func willChangeState(from state: ScreenState, to newState: ScreenState) { }
+    func willChangeState(from state: ScreenState, to newState: ScreenState) { }
 
-    open func didChangeState(_ newState: ScreenState) { }
+    func didChangeState(_ newState: ScreenState) { }
 
-    public func addState(_ state: ScreenState, view: UIView) {
+    func addState(_ state: ScreenState, view: UIView) {
         stateManager.addState(state, view: view)
     }
 
-    public func changeState(to newState: ScreenState, animated: Bool = false) {
+    func changeState(to newState: ScreenState, animated: Bool = false) {
         willChangeState(from: currentState, to: newState)
         stateManager.changeState(to: newState, animated: animated)
         didChangeState(newState)

@@ -13,6 +13,9 @@ public typealias ScreenState = String
 public extension ScreenState {
 
     static let content = "content"
+    static let loading = "loading"
 
-    var screenName: String { self }
+    var screenName: String {
+        return self
+    }
 }

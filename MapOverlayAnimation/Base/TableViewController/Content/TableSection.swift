@@ -8,13 +8,15 @@
 
 import Foundation
 
-open class TableSection {
+class TableSection {
 
-    open var cells: [TableRowProtocol]
+    var cells: [TableRowProtocol]
 
-    public var numberOfItems: Int { cells.count }
+    var numberOfItems: Int {
+        return cells.count
+    }
 
-    public init(_ cells: [TableRowProtocol]) {
+    init(_ cells: [TableRowProtocol]) {
         self.cells = cells
     }
 }

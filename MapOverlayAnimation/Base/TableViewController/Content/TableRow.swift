@@ -9,43 +9,47 @@
 import UIKit
 import DeepDiff
 
-final public class TableRow<CellType: ConfigurableCell>: TableRowProtocol where CellType: UITableViewCell {
+final class TableRow<CellType: ConfigurableCell>: TableRowProtocol where CellType: UITableViewCell, CellType.ViewModelT: Hashable {
 
-    public typealias CellViewModel = CellType.ViewModelT
+    typealias CellViewModel = CellType.ViewModelT
 
-    public let cellViewModel: CellViewModel
+    let cellViewModel: CellViewModel
 
-    public var cellClass: UITableViewCell.Type { CellType.self }
+    var cellClass: UITableViewCell.Type {
+        return CellType.self
+    }
 
-    public init(cellViewModel: CellViewModel) {
+    init(cellViewModel: CellViewModel) {
         self.cellViewModel = cellViewModel
     }
 
-    public func configure(_ cell: UITableViewCell) {
+    func configure(_ cell: UITableViewCell) {
         (cell as? CellType)?.configure(with: cellViewModel)
     }
 
-    public var height: CGFloat {
-        (cellClass as? CellType.Type)?.height ?? UITableView.automaticDimension
+    var height: CGFloat {
+        return (cellClass as? CellType.Type)?.height ?? UITableView.automaticDimension
     }
 }
 
 extension TableRow: Hashable {
 
-    public static func == (lhs: TableRow, rhs: TableRow) -> Bool {
-        lhs.cellViewModel == rhs.cellViewModel
+    static func == (lhs: TableRow, rhs: TableRow) -> Bool {
+        return lhs.cellViewModel == rhs.cellViewModel
     }
 
-    public func hash(into hasher: inout Hasher) {
+    func hash(into hasher: inout Hasher) {
         hasher.combine(cellViewModel)
     }
 }
 
 extension TableRow: DiffAware {
 
-    public var diffId: Int { hashValue }
+    var diffId: Int {
+        return hashValue
+    }
 
-    public static func compareContent(_ a: TableRow<CellType>, _ b: TableRow<CellType>) -> Bool {
-        a == b
+    static func compareContent(_ a: TableRow<CellType>, _ b: TableRow<CellType>) -> Bool {
+        return a == b
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Array {
+extension Array {
 
     mutating func replace(from fromIndex: Int, to toIndex: Int) {
         let element = self[fromIndex]

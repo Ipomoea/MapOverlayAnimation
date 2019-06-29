@@ -8,9 +8,9 @@
 
 import UIKit
 
-public extension UIApplication {
+extension UIApplication {
 
     var applicationName: String {
-        Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? ""
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? ""
     }
 }

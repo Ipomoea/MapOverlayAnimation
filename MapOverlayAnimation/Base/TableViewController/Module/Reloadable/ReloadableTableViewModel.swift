@@ -8,13 +8,21 @@
 
 import Foundation
 
-open class ReloadableTableViewModel<CellViewModel: Hashable & ViewModel>: TableViewModel {
+class ReloadableTableViewModel<CellViewModel: Hashable & ViewModel>: TableViewModel {
 
-    public var reloadAction: VoidClosure?
+    var reloadAction: VoidClosure?
 
-    public var cellViewModels: [CellViewModel] = [] {
-        didSet { reload() }
+    var cellViewModels: [CellViewModel] = [] {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.reload()
+            }
+        }
     }
 
-    public init() { }
+    var title: String {
+        return .empty
+    }
+
+    func selectViewModel(_ cellViewModel: CellViewModel) { }
 }

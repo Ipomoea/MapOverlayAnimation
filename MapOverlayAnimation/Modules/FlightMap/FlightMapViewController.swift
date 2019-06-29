@@ -6,4 +6,20 @@
 //  Copyright © 2019 Pavel Lukandiy. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import MapKit
+
+final class FlightMapViewController: ViewController<FlightMapViewModel> {
+
+    private let mapView = MKMapView()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupMapView()
+    }
+
+    private func setupMapView() {
+        view.addSubview(mapView)
+        mapView.pinToSuperview()
+    }
+}

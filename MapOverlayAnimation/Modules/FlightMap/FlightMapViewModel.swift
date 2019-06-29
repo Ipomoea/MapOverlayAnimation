@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+final class FlightMapViewModel: ControllerViewModel {
+
+    var title: String {
+        return "Карта"
+    }
+
+    private let airport: Airport
+
+    init(airport: Airport) {
+        self.airport = airport
+    }
+}

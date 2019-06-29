@@ -8,14 +8,14 @@
 
 import Foundation
 
-public protocol TableViewModel: ViewModel {
+protocol TableViewModel: ControllerViewModel {
 
     var reloadAction: VoidClosure? { get set }
 }
 
 extension TableViewModel {
 
-    public func reload() {
+    func reload() {
         reloadAction?()
     }
 }

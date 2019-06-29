@@ -23,8 +23,8 @@ final class ApplicationCoordinator: NavigationCoordinator<ApplicationRoute> {
     override func prepareTransition(for route: ApplicationRoute) -> NavigationTransition {
         switch route {
         case .cities:
-            let coordinator = CurrenciesCoordinator(initialRoute: .main(currency: Constants.startCurrency))
-            return .present(coordinator)
+            let coordinator = AirportCoordinator()
+            return .presentOnRoot(coordinator)
         }
     }
 }

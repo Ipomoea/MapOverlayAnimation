@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol TableRowProtocol {
+protocol TableRowProtocol {
 
     var reuseIdentifier: String { get }
 
@@ -19,7 +19,9 @@ public protocol TableRowProtocol {
     func configure(_ cell: UITableViewCell)
 }
 
-public extension TableRowProtocol {
+extension TableRowProtocol {
 
-    var reuseIdentifier: String { cellClass.reuseIdentifier }
+    var reuseIdentifier: String {
+        return cellClass.reuseIdentifier
+    }
 }

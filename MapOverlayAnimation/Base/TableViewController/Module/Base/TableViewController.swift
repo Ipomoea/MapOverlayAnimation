@@ -8,38 +8,42 @@
 
 import UIKit
 
-open class TableViewController<TableViewModelT: TableViewModel>: StateViewController<TableViewModelT>, UITableViewDataSource, UITableViewDelegate {
+class TableViewController<TableViewModelT: TableViewModel>: StateViewController<TableViewModelT>, UITableViewDataSource, UITableViewDelegate {
 
     /// Main table view
-    public let tableView: UITableView
+    let tableView: UITableView
 
     /// Main table view data source
     /// Set this property to see data on the table
-    public var sections: [TableSection] = [] {
+    var sections: [TableSection] = [] {
         didSet { registerCells() }
     }
 
     /// Shows if table is not empty
-    public var hasContent: Bool { !allCells.isEmpty }
+    var hasContent: Bool {
+        return !allCells.isEmpty
+    }
 
-    private var allCells: [TableRowProtocol] { sections.flatMap { $0.cells } }
+    private var allCells: [TableRowProtocol] {
+        return sections.flatMap { $0.cells }
+    }
 
     private var cellTypes: [UITableViewCell.Type] {
-        allCells.map { $0.cellClass }
+        return allCells.map { $0.cellClass }
     }
 
     private let registerer: TableCellRegisterer
 
     private var isInitialLoad = true
 
-    public required init(viewModel: TableViewModelT) {
+    required init(viewModel: TableViewModelT) {
         let tableView = UITableView()
         self.tableView = tableView
         self.registerer = TableCellRegisterer(tableView: tableView)
         super.init(viewModel: viewModel)
     }
 
-    override open func viewDidLoad() {
+    override func viewDidLoad() {
         configureTableViewController()
         super.viewDidLoad()
         setupTableConstraints()
@@ -48,20 +52,19 @@ open class TableViewController<TableViewModelT: TableViewModel>: StateViewContro
 
     /// Setup constraints here
     /// Don't call super if you don't want to pin `tableView` to superview
-    open func setupTableConstraints() {
+    func setupTableConstraints() {
         tableView.pinToSuperview()
     }
 
     /// Override point
     /// Calls when view model initiates reload.
     /// - Parameter initialLoad: Flag that shows if load was exected first time
-    open func reloadTableView(initialLoad: Bool) { }
+    func reloadTableView(initialLoad: Bool) { }
 
     /// Make `tableView` configuration here
     /// Super is requred
-    open func configureTableView(tableView: UITableView) {
+    func configureTableView(tableView: UITableView) {
         tableView.tableFooterView = UIView()
-        tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
 
@@ -73,30 +76,34 @@ open class TableViewController<TableViewModelT: TableViewModel>: StateViewContro
     /// Warning! Method is not safe. Make sure you provide existing index path and proper cell type
     /// - Parameter indexPath: Index path of desire cell
     /// - Parameter cellType: Cell type
-    public func cellViewModel<Cell: UITableViewCell & ConfigurableCell, Row: TableRow<Cell>>(
+    func cellViewModel<Cell: UITableViewCell & ConfigurableCell, Row: TableRow<Cell>>(
         at indexPath: IndexPath,
         cellType: Cell.Type
     ) -> Row.CellViewModel {
-        (row(at: indexPath) as! Row).cellViewModel
+        return (row(at: indexPath) as! Row).cellViewModel
     }
 
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        sections.count
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
     }
 
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        sections[section].numberOfItems
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sections[section].numberOfItems
     }
 
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableRow = row(at: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: tableRow.reuseIdentifier, for: indexPath)
         tableRow.configure(cell)
         return cell
     }
 
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        row(at: indexPath).height
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return row(at: indexPath).height
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     private func configureTableViewController() {
@@ -121,6 +128,6 @@ open class TableViewController<TableViewModelT: TableViewModel>: StateViewContro
 private extension TableViewController {
 
     func row(at indexPath: IndexPath) -> TableRowProtocol {
-        sections[indexPath.section].cells[indexPath.row]
+        return sections[indexPath.section].cells[indexPath.row]
     }
 }

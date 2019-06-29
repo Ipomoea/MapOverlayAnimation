@@ -8,9 +8,9 @@
 
 import UIKit
 
-public extension UIViewController {
+extension UIViewController {
 
     func embedInNavigationController<T: UINavigationController>() -> T {
-        T(rootViewController: self)
+        return T(rootViewController: self)
     }
 }

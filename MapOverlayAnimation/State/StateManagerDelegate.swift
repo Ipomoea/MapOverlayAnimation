@@ -18,5 +18,7 @@ public protocol StateManagerDelegate: class {
 
 public extension StateManagerDelegate where Self: UIViewController {
 
-    var rootView: UIView { view }
+    var rootView: UIView {
+        return view
+    }
 }

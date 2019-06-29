@@ -8,7 +8,13 @@
 
 import UIKit
 
-class PlaceholderView: UIView {
+final class PlaceholderView: UIView, ConfigurableView {
+
+    override class var requiresConstraintBasedLayout: Bool {
+        return true
+    }
+
+    var onRetry: VoidClosure?
 
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
@@ -30,9 +36,9 @@ class PlaceholderView: UIView {
             make.leading.trailing.greaterThanOrEqualToSuperview().inset(Constants.defaultPadding)
         }
 
-        descriptionLabel.snp.remakeConstraints { make in
+        titleLabel.snp.remakeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(descriptionLabel.snp.top).offset(Constants.defaultSpacing)
+            make.bottom.equalTo(descriptionLabel.snp.top).inset(-Constants.defaultSpacing)
             make.leading.trailing.greaterThanOrEqualToSuperview().inset(Constants.defaultPadding)
         }
 
@@ -45,11 +51,34 @@ class PlaceholderView: UIView {
         super.updateConstraints()
     }
 
+    func configure(with viewModel: PlaceholderViewModel) {
+        titleLabel.text = viewModel.title
+        descriptionLabel.text = viewModel.description
+        button.setTitle(viewModel.buttonTitle, for: .normal)
+        setNeedsUpdateConstraints()
+    }
+
     private func setup() {
         addSubviews(titleLabel, descriptionLabel, button)
 
         [titleLabel, descriptionLabel].forEach {
             $0.numberOfLines = 0
+            $0.textAlignment = .center
         }
+
+        titleLabel.font = UIFont.moa.titleFont()
+        descriptionLabel.font = UIFont.moa.descriptionFont()
+
+        titleLabel.textColor = UIColor.moa.titleColor
+        descriptionLabel.textColor = UIColor.moa.descriptionColor
+
+        button.titleLabel?.font = UIFont.moa.descriptionFont()
+        button.setTitleColor(UIColor.moa.actionColor, for: .normal)
+        button.addTarget(self, action: #selector(retry), for: .touchUpInside)
+    }
+
+    @objc
+    private func retry() {
+        onRetry?()
     }
 }

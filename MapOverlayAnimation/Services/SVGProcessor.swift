@@ -1,8 +1,8 @@
 //
 //  SVGProcessor.swift
-//  Currencies
+//  MapOverlayAnimation
 //
-//  Created by Pavel Lukandiy on 07/01/2019.
+//  Created by Pavel Lukandiy on 28.06.2019.
 //  Copyright © 2019 Pavel Lukandiy. All rights reserved.
 //
 
@@ -13,7 +13,9 @@ struct SVGProcessor: ImageProcessor {
 
     let imageSize: CGSize
 
-    var identifier: String { Constants.processorIdentifier }
+    var identifier: String {
+        return Constants.processorIdentifier
+    }
 
     func process(item: ImageProcessItem, options: KingfisherParsedOptionsInfo) -> Image? {
         switch item {
@@ -29,6 +31,6 @@ struct SVGProcessor: ImageProcessor {
     }
 }
 
-private enum Constants {
-    static let processorIdentifier = "com.pl.currencies.svg"
+private extension Constants {
+    static let processorIdentifier = "com.pl.avia.svg"
 }

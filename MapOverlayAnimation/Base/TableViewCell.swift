@@ -8,31 +8,32 @@
 
 import UIKit
 
-open class TableViewCell: UITableViewCell {
+class TableViewCell: UITableViewCell {
 
-    override public class var requiresConstraintBasedLayout: Bool { true }
+    override class var requiresConstraintBasedLayout: Bool {
+        return true
+    }
 
-    override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
     }
 
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    override open func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         setup()
     }
 
-    open func setup() {
-        selectionStyle = .none
+    func setup() {
         addSubviews()
         configureSubviews()
     }
 
-    open func addSubviews() { }
+    func addSubviews() { }
 
-    open func configureSubviews() { }
+    func configureSubviews() { }
 }

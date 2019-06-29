@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+final class AirportCoordinatorStorage {
+
+    let networkService: NetworkService
+    let countryService: CountryService
+
+    init() {
+        let networkService = NetworkService()
+        self.networkService = networkService
+        self.countryService = CountryService(networkService: networkService)
+    }
+}

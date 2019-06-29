@@ -1,16 +1,13 @@
 //
 //  CountryService.swift
-//  Currencies
+//  MapOverlayAnimation
 //
-//  Created by Pavel Lukandiy on 07/01/2019.
+//  Created by Pavel Lukandiy on 28.06.2019.
 //  Copyright © 2019 Pavel Lukandiy. All rights reserved.
 //
 
 import Foundation
-
-extension Notification.Name {
-    static let CountryServiceDidLoadCountries = Notification.Name(rawValue: "CountryServiceDidLoadCountries")
-}
+import RxSwift
 
 final class CountryService {
 
@@ -21,13 +18,20 @@ final class CountryService {
         case error(Swift.Error)
     }
 
+    var countriesObservable: Observable<[Country]> {
+        return countriesSubject
+            .asObservable()
+            .catchErrorJustReturn([])
+    }
+
     private(set) var state: State = .initial
 
     private let networkService: NetworkService
-    private var countries: [Country] = []
+    private let countriesSubject = BehaviorSubject<[Country]>(value: [])
 
     init(networkService: NetworkService) {
         self.networkService = networkService
+        requestCountries()
     }
 
     func requestCountries() {
@@ -36,34 +40,23 @@ final class CountryService {
         }
 
         state = .loading
-        networkService.getCountries { [weak self] result in
+        _ = networkService.getCountries { [weak self] result in
             guard let self = self else {
                 return
             }
 
             switch result {
             case .success(let value):
-                self.countries = value
+                self.countriesSubject.onNext(value)
                 self.state = .data
-                NotificationCenter.default.post(
-                    name: .CountryServiceDidLoadCountries,
-                    object: nil
-                )
             case .failure(let error):
                 self.state = .error(error)
             }
         }
     }
 
-    func country(from currency: Currency) -> Country? {
-        countries.first { $0.currencies
-            .compactMap { $0.code }
-            .contains(currency.rawValue) }
-    }
-
-    func countryCurrency(from currency: Currency) -> CountryCurrency? {
-        countries
-            .flatMap { $0.currencies }
-            .first { $0.code == currency.rawValue }
+    func coutryObservable(from code: String) -> Observable<Country?> {
+        return countriesObservable
+            .map { $0.first { $0.alpha2Code == code || $0.alpha3Code == code } }
     }
 }

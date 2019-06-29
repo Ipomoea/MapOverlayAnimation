@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+struct Country: Decodable {
+
+    let name: String
+
+    let flag: URL
+
+    let alpha2Code: String
+
+    let alpha3Code: String
+}

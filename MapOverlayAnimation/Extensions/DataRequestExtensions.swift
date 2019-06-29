@@ -6,4 +6,6 @@
 //  Copyright © 2019 Pavel Lukandiy. All rights reserved.
 //
 
-import Foundation
+import Alamofire
+
+extension DataRequest: Cancelable { }

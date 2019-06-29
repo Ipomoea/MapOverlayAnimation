@@ -8,4 +8,16 @@
 
 import Foundation
 
-public protocol ViewModel: class { }
+protocol ViewModel: class { }
+
+protocol ControllerViewModel: ViewModel {
+
+    var title: String { get }
+}
+
+extension ControllerViewModel {
+
+    var title: String {
+        return .empty
+    }
+}

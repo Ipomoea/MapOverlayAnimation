@@ -7,24 +7,28 @@
 //
 
 import UIKit
+import RxSwift
 
 /// Base view controller. Just holds a view model
-open class ViewController<ViewModelT: ViewModel>: UIViewController {
+class ViewController<ViewModelT: ControllerViewModel>: UIViewController {
 
-    public let viewModel: ViewModelT
+    let viewModel: ViewModelT
 
-    public required init(viewModel: ViewModelT) {
+    let disposeBag = DisposeBag()
+
+    required init(viewModel: ViewModelT) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
 
     @available(*, unavailable)
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("Storyboards are incompatible with truth and beauty")
     }
 
-    override open func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        navigationItem.title = viewModel.title
     }
 }

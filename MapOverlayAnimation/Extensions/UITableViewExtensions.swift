@@ -8,7 +8,7 @@
 
 import UIKit
 
-public extension UITableView {
+extension UITableView {
 
     func scrollToTop(animated: Bool = false) {
         guard numberOfSections > 0, numberOfRows(inSection: 0) > 0 else {
