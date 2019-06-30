@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 final class FlightMapViewModel: ControllerViewModel {
 
@@ -14,9 +15,17 @@ final class FlightMapViewModel: ControllerViewModel {
         return "Карта"
     }
 
-    private let airport: Airport
+    var startPointViewModel: AirportPinViewModel {
+        return AirportPinViewModel(airport: mapPoints.start)
+    }
 
-    init(airport: Airport) {
-        self.airport = airport
+    var endPointViewModel: AirportPinViewModel {
+        return AirportPinViewModel(airport: mapPoints.end)
+    }
+
+    private let mapPoints: MapPoints
+
+    init(mapPoints: MapPoints) {
+        self.mapPoints = mapPoints
     }
 }

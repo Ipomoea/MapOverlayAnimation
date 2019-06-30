@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 typealias Coordinate = Double
 
@@ -19,4 +20,11 @@ struct Coordinates: Codable, Hashable {
 
     let latitude: Coordinate
     let longitude: Coordinate
+}
+
+extension Coordinates {
+
+    var clCoordinates: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
 }

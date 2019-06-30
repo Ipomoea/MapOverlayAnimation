@@ -10,7 +10,7 @@ import XCoordinator
 
 enum AirportRoute: Route {
     case list
-    case map(Airport)
+    case map(MapPoints)
 }
 
 typealias AirportRouter = AnyRouter<AirportRoute>
@@ -33,8 +33,8 @@ final class AirportCoordinator: NavigationCoordinator<AirportRoute> {
             )
             let viewController = AirportListViewController(viewModel: viewModel)
             return .push(viewController)
-        case .map(let airport):
-            let viewModel = FlightMapViewModel(airport: airport)
+        case .map(let points):
+            let viewModel = FlightMapViewModel(mapPoints: points)
             let viewController = FlightMapViewController(viewModel: viewModel)
             return .push(viewController)
         }

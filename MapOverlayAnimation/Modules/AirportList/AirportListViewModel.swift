@@ -36,7 +36,7 @@ final class AirportListViewModel: ReloadableTableViewModel<AirportCellViewModel>
     }
 
     var searchTitle: String {
-        return "Поиск по городам или аеропортам"
+        return "Поиск по городам или аэропортам"
     }
 
     var stateDriver: Driver<State> {
@@ -71,7 +71,7 @@ final class AirportListViewModel: ReloadableTableViewModel<AirportCellViewModel>
 
     override func selectViewModel(_ cellViewModel: AirportCellViewModel) {
         super.selectViewModel(cellViewModel)
-        router.trigger(.map(cellViewModel.airport))
+        router.trigger(.map(.withDefaultStartPoint(endPoint: cellViewModel.airport)))
     }
 
     private func updateResults() {

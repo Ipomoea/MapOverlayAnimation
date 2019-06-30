@@ -27,6 +27,14 @@ struct Color {
     static var actionColor: UIColor {
         return .blue
     }
+
+    static var whiteOverlayColor: UIColor {
+        return UIColor.white.withAlphaComponent(0.7)
+    }
+
+    static var blueColor: UIColor {
+        return .blue
+    }
 }
 
 struct Font {

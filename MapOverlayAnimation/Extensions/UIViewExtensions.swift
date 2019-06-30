@@ -21,6 +21,12 @@ extension UIView {
         layer.cornerRadius = radius
     }
 
+    func renderImage() -> UIImage {
+        return UIGraphicsImageRenderer(bounds: bounds).image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
+    }
+
     func pinCenterToSuperview() {
         guard let superview = superview else {
             return

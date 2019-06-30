@@ -14,20 +14,28 @@ struct Airport: Codable, Hashable {
 
     enum CodingKeys: String, CodingKey {
         case airportName = "airport_name"
-        case indexStrings = "index_strings"
         case iata
         case name
         case location
         case countryIata = "country_iata"
-        case searchesCount = "searches_count"
     }
 
     let airportName: String?
-    let indexStrings: [String]
     let iata: String
     let name: String
     let location: Coordinates
-
     let countryIata: String
-    let searchesCount: Int
+}
+
+extension Airport {
+
+    static var saintPetersburg: Airport {
+        return Airport(
+            airportName: "Пулково",
+            iata: "LED",
+            name: "Санкт-Петербург, Россия",
+            location: Coordinates(latitude: 59.806084, longitude: 30.3083),
+            countryIata: "RU"
+        )
+    }
 }
