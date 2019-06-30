@@ -33,7 +33,7 @@ struct Color {
     }
 
     static var blueColor: UIColor {
-        return .blue
+        return UIColor(red: 70.0 / 255.0, green: 150.0 / 255.0, blue: 236.0 / 255.0, alpha: 1.0)
     }
 }
 

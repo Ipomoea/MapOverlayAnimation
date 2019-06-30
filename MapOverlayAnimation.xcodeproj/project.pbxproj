@@ -14,6 +14,7 @@
 		825E790322C830EB008C45E5 /* AirportAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E790222C830EB008C45E5 /* AirportAnnotationView.swift */; };
 		825E790522C8344A008C45E5 /* MapPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E790422C8344A008C45E5 /* MapPoints.swift */; };
 		825E790722C83AC4008C45E5 /* MKMapViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E790622C83AC4008C45E5 /* MKMapViewExtensions.swift */; };
+		825E790A22C840B4008C45E5 /* PolylineRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E790922C840B4008C45E5 /* PolylineRenderer.swift */; };
 		82897AC122C6BC9B0098B246 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897AC022C6BC9B0098B246 /* Appearance.swift */; };
 		82897AC322C800600098B246 /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897AC222C800600098B246 /* Cancelable.swift */; };
 		82897AC522C800810098B246 /* DataRequestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897AC422C800810098B246 /* DataRequestExtensions.swift */; };
@@ -73,6 +74,7 @@
 		825E790222C830EB008C45E5 /* AirportAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportAnnotationView.swift; sourceTree = "<group>"; };
 		825E790422C8344A008C45E5 /* MapPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPoints.swift; sourceTree = "<group>"; };
 		825E790622C83AC4008C45E5 /* MKMapViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtensions.swift; sourceTree = "<group>"; };
+		825E790922C840B4008C45E5 /* PolylineRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolylineRenderer.swift; sourceTree = "<group>"; };
 		82897AC022C6BC9B0098B246 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		82897AC222C800600098B246 /* Cancelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancelable.swift; sourceTree = "<group>"; };
 		82897AC422C800810098B246 /* DataRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequestExtensions.swift; sourceTree = "<group>"; };
@@ -148,6 +150,14 @@
 				825E790222C830EB008C45E5 /* AirportAnnotationView.swift */,
 			);
 			path = AirportAnnotation;
+			sourceTree = "<group>";
+		};
+		825E790822C8409F008C45E5 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				825E790922C840B4008C45E5 /* PolylineRenderer.swift */,
+			);
+			path = Renderer;
 			sourceTree = "<group>";
 		};
 		82897ABF22C6BC660098B246 /* Appearance */ = {
@@ -388,6 +398,7 @@
 		82DD0E1B22C66ED500EDC424 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				825E790822C8409F008C45E5 /* Renderer */,
 				825E78FF22C82C7A008C45E5 /* AirportAnnotation */,
 				82DD0E2422C6B8CD00EDC424 /* Placeholder */,
 				82DD0E1C22C66ED500EDC424 /* PlaceholderImageView.swift */,
@@ -548,6 +559,7 @@
 				82DD0DF022C65B7100EDC424 /* StateManagerDelegate.swift in Sources */,
 				82DD0DD922C65B5800EDC424 /* TableRowProtocol.swift in Sources */,
 				825E790722C83AC4008C45E5 /* MKMapViewExtensions.swift in Sources */,
+				825E790A22C840B4008C45E5 /* PolylineRenderer.swift in Sources */,
 				82DD0E2622C6B8E100EDC424 /* PlaceholderView.swift in Sources */,
 				82DD0DD222C65B5800EDC424 /* TableViewCell.swift in Sources */,
 				82DD0E2822C6BA4A00EDC424 /* PlaceholderViewModel.swift in Sources */,

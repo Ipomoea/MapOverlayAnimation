@@ -15,6 +15,19 @@ final class FlightMapViewModel: ControllerViewModel {
         return "Карта"
     }
 
+    var pinViewModels: [AirportPinViewModel] {
+        return [
+            startPointViewModel,
+            endPointViewModel
+        ]
+    }
+
+    var pinCoordinates: [CLLocationCoordinate2D] {
+        return pinViewModels.map { $0.coordinate }
+    }
+
+    private let mapPoints: MapPoints
+
     var startPointViewModel: AirportPinViewModel {
         return AirportPinViewModel(airport: mapPoints.start)
     }
@@ -22,8 +35,6 @@ final class FlightMapViewModel: ControllerViewModel {
     var endPointViewModel: AirportPinViewModel {
         return AirportPinViewModel(airport: mapPoints.end)
     }
-
-    private let mapPoints: MapPoints
 
     init(mapPoints: MapPoints) {
         self.mapPoints = mapPoints

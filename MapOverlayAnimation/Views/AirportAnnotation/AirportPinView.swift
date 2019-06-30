@@ -46,7 +46,7 @@ final class AirportPinView: UIView, ConfigurableView {
             addSubview(iataLabel)
             iataLabel.textAlignment = .center
             iataLabel.textColor = UIColor.moa.blueColor
-            iataLabel.font = UIFont.moa.titleFont()
+            iataLabel.font = UIFont.moa.boldFont(of: 16)
         }
     }
 

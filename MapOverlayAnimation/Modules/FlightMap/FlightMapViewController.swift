@@ -18,6 +18,7 @@ final class FlightMapViewController: ViewController<FlightMapViewModel>, MKMapVi
 
         setupMapView()
         addAttractions()
+        addRoute()
         mapView.fitAllAnnotations(padding: Constants.annotationPadding)
     }
 
@@ -29,6 +30,14 @@ final class FlightMapViewController: ViewController<FlightMapViewModel>, MKMapVi
         return annotationView
     }
 
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKPolyline {
+            return PolylineRenderer(overlay: overlay)
+        }
+
+        return MKOverlayRenderer()
+    }
+
     private func setupMapView() {
         view.addSubview(mapView)
         mapView.delegate = self
@@ -36,10 +45,13 @@ final class FlightMapViewController: ViewController<FlightMapViewModel>, MKMapVi
     }
 
     private func addAttractions() {
-        mapView.addAnnotations([
-            viewModel.startPointViewModel,
-            viewModel.endPointViewModel
-        ])
+        mapView.addAnnotations(viewModel.pinViewModels)
+    }
+
+    func addRoute() {
+        let coordinates = viewModel.pinCoordinates
+        let polyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
+        mapView.addOverlay(polyline)
     }
 }
 
