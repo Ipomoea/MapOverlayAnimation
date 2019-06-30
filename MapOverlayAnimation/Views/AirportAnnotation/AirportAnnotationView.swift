@@ -10,7 +10,6 @@ import MapKit
 
 final class AirportAnnotationView: MKAnnotationView, ConfigurableView {
 
-    private var pinView: AirportPinView?
     private var viewModel: AirportPinViewModel?
 
     init(reuseIdentifier: String) {
@@ -33,8 +32,6 @@ final class AirportAnnotationView: MKAnnotationView, ConfigurableView {
 
     private func updateImage() {
         let view = AirportPinView()
-        pinView = view
-
         if let viewModel = viewModel {
             view.configure(with: viewModel)
         }
@@ -44,6 +41,5 @@ final class AirportAnnotationView: MKAnnotationView, ConfigurableView {
 
     func configure(with viewModel: AirportPinViewModel) {
         self.viewModel = viewModel
-        pinView?.configure(with: viewModel)
     }
 }

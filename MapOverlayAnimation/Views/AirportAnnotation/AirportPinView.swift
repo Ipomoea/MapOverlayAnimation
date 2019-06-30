@@ -46,7 +46,7 @@ final class AirportPinView: UIView, ConfigurableView {
             addSubview(iataLabel)
             iataLabel.textAlignment = .center
             iataLabel.textColor = UIColor.moa.blueColor
-            iataLabel.font = UIFont.moa.boldFont(of: 16)
+            iataLabel.font = UIFont.moa.boldFont(of: 14)
         }
     }
 
@@ -56,7 +56,7 @@ final class AirportPinView: UIView, ConfigurableView {
 }
 
 private extension Constants {
-    static let width: CGFloat = 50.0
+    static let width: CGFloat = 54.0
     static let height: CGFloat = 26.0
     static let lineWidth: CGFloat = 2.0
 }

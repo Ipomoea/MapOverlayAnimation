@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import RxSwift
 
 final class FlightMapViewModel: ControllerViewModel {
 
@@ -22,11 +23,8 @@ final class FlightMapViewModel: ControllerViewModel {
         ]
     }
 
-    var pinCoordinates: [CLLocationCoordinate2D] {
-        return pinViewModels.map { $0.coordinate }
-    }
-
     private let mapPoints: MapPoints
+    private let curveCalculator = CurveCalculator()
 
     var startPointViewModel: AirportPinViewModel {
         return AirportPinViewModel(airport: mapPoints.start)
@@ -38,5 +36,18 @@ final class FlightMapViewModel: ControllerViewModel {
 
     init(mapPoints: MapPoints) {
         self.mapPoints = mapPoints
+    }
+
+    func calculateCurve() -> Observable<[CLLocationCoordinate2D]> {
+        return .create { [curveCalculator, mapPoints] subscriber -> Disposable in
+            DispatchQueue.global(qos: .default).async {
+                let coordinates = curveCalculator.calculateSinusoidalWaveBetween(
+                    mapPoints.start.location,
+                    mapPoints.end.location
+                )
+                subscriber.onNext(coordinates.map { $0.clCoordinates })
+            }
+            return Disposables.create()
+        }
     }
 }

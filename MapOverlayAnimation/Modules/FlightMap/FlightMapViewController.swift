@@ -8,8 +8,9 @@
 
 import UIKit
 import MapKit
+import RxSwift
 
-final class FlightMapViewController: ViewController<FlightMapViewModel>, MKMapViewDelegate {
+final class FlightMapViewController: ViewController<FlightMapViewModel> {
 
     private let mapView = MKMapView()
 
@@ -18,9 +19,33 @@ final class FlightMapViewController: ViewController<FlightMapViewModel>, MKMapVi
 
         setupMapView()
         addAttractions()
-        addRoute()
         mapView.fitAllAnnotations(padding: Constants.annotationPadding)
+
+        viewModel.calculateCurve()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] coordinates in
+                self?.addRoute(curve: coordinates)
+            })
+            .disposed(by: disposeBag)
     }
+
+    private func setupMapView() {
+        view.addSubview(mapView)
+        mapView.delegate = self
+        mapView.pinToSuperview()
+    }
+
+    private func addAttractions() {
+        mapView.addAnnotations(viewModel.pinViewModels)
+    }
+
+    private func addRoute(curve: [CLLocationCoordinate2D]) {
+        let polyline = MKPolyline(coordinates: curve, count: curve.count)
+        mapView.addOverlay(polyline)
+    }
+}
+
+extension FlightMapViewController: MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let annotationView = AirportAnnotationView(reuseIdentifier: "airport_annotation")
@@ -36,22 +61,6 @@ final class FlightMapViewController: ViewController<FlightMapViewModel>, MKMapVi
         }
 
         return MKOverlayRenderer()
-    }
-
-    private func setupMapView() {
-        view.addSubview(mapView)
-        mapView.delegate = self
-        mapView.pinToSuperview()
-    }
-
-    private func addAttractions() {
-        mapView.addAnnotations(viewModel.pinViewModels)
-    }
-
-    func addRoute() {
-        let coordinates = viewModel.pinCoordinates
-        let polyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
-        mapView.addOverlay(polyline)
     }
 }
 
