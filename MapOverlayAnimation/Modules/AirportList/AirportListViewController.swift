@@ -44,7 +44,7 @@ final class AirportListViewController: ReloadableTableViewController<AirportCell
 
     override func configureTableView(tableView: UITableView) {
         super.configureTableView(tableView: tableView)
-        tableView.delegate = self
+        tableView.keyboardDismissMode = .onDrag
     }
 
     private func setupSearchController() {
