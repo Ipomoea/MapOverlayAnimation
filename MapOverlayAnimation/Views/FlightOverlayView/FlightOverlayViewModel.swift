@@ -20,11 +20,9 @@ final class FlightOverlayViewModel: NSObject, MKOverlay, ViewModel {
         return .world
     }
 
-    var rotatedImage: UIImage? {
-        return imageResource.rotated(by: course)
+    var course: CLLocationDirection {
+        return -calculateCourse() + (.pi / 2)
     }
-
-    private let imageResource = #imageLiteral(resourceName: "plane")
 
     private let calculator = CurveCalculator()
     private let repeatingTimer = DispatchSource.makeTimerSource()
@@ -33,10 +31,6 @@ final class FlightOverlayViewModel: NSObject, MKOverlay, ViewModel {
 
     private var step = 0
     private var reversed = false
-
-    private var course: CLLocationDirection {
-        return -calculateCourse() + (.pi / 2)
-    }
 
     private var timerInterval: TimeInterval {
         return Constants.animationDuration / TimeInterval(locationsCount)

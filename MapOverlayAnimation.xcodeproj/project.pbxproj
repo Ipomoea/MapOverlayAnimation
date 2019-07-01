@@ -19,7 +19,7 @@
 		825E791022C8CF01008C45E5 /* FlightOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E790F22C8CF01008C45E5 /* FlightOverlayView.swift */; };
 		825E791222C8CF29008C45E5 /* FlightOverlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E791122C8CF29008C45E5 /* FlightOverlayViewModel.swift */; };
 		825E791422CA6601008C45E5 /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E791322CA6601008C45E5 /* DoubleExtensions.swift */; };
-		825E791622CA8DAD008C45E5 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E791522CA8DAD008C45E5 /* UIImageExtensions.swift */; };
+		825E791622CA8DAD008C45E5 /* CGImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E791522CA8DAD008C45E5 /* CGImageExtensions.swift */; };
 		82897AC122C6BC9B0098B246 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897AC022C6BC9B0098B246 /* Appearance.swift */; };
 		82897AC322C800600098B246 /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897AC222C800600098B246 /* Cancelable.swift */; };
 		82897AC522C800810098B246 /* DataRequestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897AC422C800810098B246 /* DataRequestExtensions.swift */; };
@@ -84,7 +84,7 @@
 		825E790F22C8CF01008C45E5 /* FlightOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightOverlayView.swift; sourceTree = "<group>"; };
 		825E791122C8CF29008C45E5 /* FlightOverlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightOverlayViewModel.swift; sourceTree = "<group>"; };
 		825E791322CA6601008C45E5 /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
-		825E791522CA8DAD008C45E5 /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
+		825E791522CA8DAD008C45E5 /* CGImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGImageExtensions.swift; sourceTree = "<group>"; };
 		82897AC022C6BC9B0098B246 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		82897AC222C800600098B246 /* Cancelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancelable.swift; sourceTree = "<group>"; };
 		82897AC422C800810098B246 /* DataRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequestExtensions.swift; sourceTree = "<group>"; };
@@ -320,7 +320,7 @@
 				825E78FB22C81935008C45E5 /* StringExtensions.swift */,
 				825E790622C83AC4008C45E5 /* MKMapViewExtensions.swift */,
 				825E791322CA6601008C45E5 /* DoubleExtensions.swift */,
-				825E791522CA8DAD008C45E5 /* UIImageExtensions.swift */,
+				825E791522CA8DAD008C45E5 /* CGImageExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -581,7 +581,7 @@
 				82DD0E1622C66B5600EDC424 /* CountryService.swift in Sources */,
 				825E790522C8344A008C45E5 /* MapPoints.swift in Sources */,
 				825E790322C830EB008C45E5 /* AirportAnnotationView.swift in Sources */,
-				825E791622CA8DAD008C45E5 /* UIImageExtensions.swift in Sources */,
+				825E791622CA8DAD008C45E5 /* CGImageExtensions.swift in Sources */,
 				82DD0DF722C65D5000EDC424 /* Constants.swift in Sources */,
 				82DD0DD622C65B5800EDC424 /* ReloadableTableViewController.swift in Sources */,
 				825E791022C8CF01008C45E5 /* FlightOverlayView.swift in Sources */,

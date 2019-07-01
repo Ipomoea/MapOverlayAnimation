@@ -12,7 +12,7 @@ import CoreLocation
 struct CurveCalculator {
 
     func calculateSinusoidalWaveBetween(_ a: Coordinates, _ b: Coordinates) -> [Coordinates] {
-        let accuracy = 1500
+        let accuracy = 700
 
         let x1 = a.latitude
         let y1 = a.longitude
