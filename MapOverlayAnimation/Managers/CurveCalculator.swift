@@ -19,20 +19,20 @@ struct CurveCalculator {
         let x2 = b.latitude
         let y2 = b.longitude
 
-        let slo = (y2 - y1) / (x2 - x1)
-        let th = atan(slo)
+        let dx = x2 - x1
+        let dy = y2 - y1
+        let d = sqrt(dx * dx + dy * dy)
+        let a = atan2(dy, dx)
+        let cosa = cos(a)
+        let sina = sin(a)
 
-        let c = cos(th)
-        let s = sin(th)
+        return (0..<accuracy).map {
+            let tx = Double($0) / Double(accuracy)
+            let ty = 0.1 * sin(tx * 2 * .pi)
 
-        let A = slo / (8 * .pi)
-        let K = (x2 - x1) / c
-
-        return (0...accuracy).map {
-            let t = Double($0) / Double(accuracy)
             return CLLocationCoordinate2D(
-                latitude: K * (c * t - 0.3 * s * sin(2 * .pi * t)) + x1,
-                longitude: K * (s * t + A * sin(2 * .pi * t)) + y1
+                latitude: x1 + d * (tx * cosa - ty * sina),
+                longitude: y1 + d * (tx * sina + ty * cosa)
             )
         }
     }

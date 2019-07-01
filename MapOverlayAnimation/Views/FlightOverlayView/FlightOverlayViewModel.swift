@@ -21,7 +21,7 @@ final class FlightOverlayViewModel: NSObject, MKOverlay, ViewModel {
     }
 
     var course: CLLocationDirection {
-        return -calculateCourse() + (.pi / 2)
+        return (.pi / 2) - calculateCourse()
     }
 
     private let calculator = CurveCalculator()
@@ -77,8 +77,8 @@ final class FlightOverlayViewModel: NSObject, MKOverlay, ViewModel {
     }
 
     private func calculateCourse() -> CLLocationDirection {
-        let seconeLocation = reversed ? locations[step - 1] : locations[step + 1]
-        return calculator.calculateCourseBetween(locations[step], seconeLocation)
+        let secondLocation = reversed ? locations[step - 1] : locations[step + 1]
+        return calculator.calculateCourseBetween(locations[step], secondLocation)
     }
 
     private func startTimer() {
@@ -104,5 +104,5 @@ final class FlightOverlayViewModel: NSObject, MKOverlay, ViewModel {
 
 private extension Constants {
     static let imageDimension: Double = 48.0
-    static let animationDuration: TimeInterval = 10.0
+    static let animationDuration: TimeInterval = 30.0
 }
