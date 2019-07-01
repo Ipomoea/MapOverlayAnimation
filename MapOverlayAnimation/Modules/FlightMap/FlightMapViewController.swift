@@ -23,7 +23,7 @@ final class FlightMapViewController: ViewController<FlightMapViewModel> {
 
         viewModel.calculateCurve()
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] coordinates in
+            .subscribe(onSuccess: { [weak self] coordinates in
                 self?.addRoute(curve: coordinates)
                 self?.addAnimation(curve: coordinates)
             })

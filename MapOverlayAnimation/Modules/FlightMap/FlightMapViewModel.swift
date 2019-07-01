@@ -38,14 +38,14 @@ final class FlightMapViewModel: ControllerViewModel {
         self.mapPoints = mapPoints
     }
 
-    func calculateCurve() -> Observable<[CLLocationCoordinate2D]> {
+    func calculateCurve() -> Single<[CLLocationCoordinate2D]> {
         return .create { [curveCalculator, mapPoints] subscriber -> Disposable in
             DispatchQueue.global(qos: .default).async {
                 let coordinates = curveCalculator.calculateSinusoidalWaveBetween(
-                    mapPoints.start.location,
-                    mapPoints.end.location
+                    mapPoints.start.location.clCoordinates,
+                    mapPoints.end.location.clCoordinates
                 )
-                subscriber.onNext(coordinates.map { $0.clCoordinates })
+                subscriber(.success(coordinates))
             }
             return Disposables.create()
         }
