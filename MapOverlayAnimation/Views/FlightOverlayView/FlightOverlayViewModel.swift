@@ -30,7 +30,9 @@ final class FlightOverlayViewModel: NSObject, MKOverlay, ViewModel {
     private let repeatingTimer = DispatchSource.makeTimerSource()
 
     private let locations: [CLLocationCoordinate2D]
+
     private var step = 0
+    private var reversed = false
 
     private var course: CLLocationDirection {
         return -calculateCourse() + (.pi / 2)
@@ -73,15 +75,16 @@ final class FlightOverlayViewModel: NSObject, MKOverlay, ViewModel {
     }
 
     private func incrementStep() {
-        if step >= locationsCount - 2 {
-            step = 0
-        } else {
-            step += 1
+        reversed ? (step -= 1) : (step += 1)
+
+        if step >= locationsCount - 2 || (step <= 1 && reversed) {
+            reversed.toggle()
         }
     }
 
     private func calculateCourse() -> CLLocationDirection {
-        return calculator.calculateCourseBetween(locations[step], locations[step + 1])
+        let seconeLocation = reversed ? locations[step - 1] : locations[step + 1]
+        return calculator.calculateCourseBetween(locations[step], seconeLocation)
     }
 
     private func startTimer() {
@@ -107,5 +110,5 @@ final class FlightOverlayViewModel: NSObject, MKOverlay, ViewModel {
 
 private extension Constants {
     static let imageDimension: Double = 48.0
-    static let animationDuration: TimeInterval = 30.0
+    static let animationDuration: TimeInterval = 10.0
 }
