@@ -16,6 +16,10 @@
 		825E790722C83AC4008C45E5 /* MKMapViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E790622C83AC4008C45E5 /* MKMapViewExtensions.swift */; };
 		825E790A22C840B4008C45E5 /* PolylineRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E790922C840B4008C45E5 /* PolylineRenderer.swift */; };
 		825E790D22C8A5BA008C45E5 /* CurveCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E790C22C8A5BA008C45E5 /* CurveCalculator.swift */; };
+		825E791022C8CF01008C45E5 /* FlightOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E790F22C8CF01008C45E5 /* FlightOverlayView.swift */; };
+		825E791222C8CF29008C45E5 /* FlightOverlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E791122C8CF29008C45E5 /* FlightOverlayViewModel.swift */; };
+		825E791422CA6601008C45E5 /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E791322CA6601008C45E5 /* DoubleExtensions.swift */; };
+		825E791622CA8DAD008C45E5 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E791522CA8DAD008C45E5 /* UIImageExtensions.swift */; };
 		82897AC122C6BC9B0098B246 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897AC022C6BC9B0098B246 /* Appearance.swift */; };
 		82897AC322C800600098B246 /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897AC222C800600098B246 /* Cancelable.swift */; };
 		82897AC522C800810098B246 /* DataRequestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897AC422C800810098B246 /* DataRequestExtensions.swift */; };
@@ -77,6 +81,10 @@
 		825E790622C83AC4008C45E5 /* MKMapViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtensions.swift; sourceTree = "<group>"; };
 		825E790922C840B4008C45E5 /* PolylineRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolylineRenderer.swift; sourceTree = "<group>"; };
 		825E790C22C8A5BA008C45E5 /* CurveCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveCalculator.swift; sourceTree = "<group>"; };
+		825E790F22C8CF01008C45E5 /* FlightOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightOverlayView.swift; sourceTree = "<group>"; };
+		825E791122C8CF29008C45E5 /* FlightOverlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightOverlayViewModel.swift; sourceTree = "<group>"; };
+		825E791322CA6601008C45E5 /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
+		825E791522CA8DAD008C45E5 /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		82897AC022C6BC9B0098B246 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		82897AC222C800600098B246 /* Cancelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancelable.swift; sourceTree = "<group>"; };
 		82897AC422C800810098B246 /* DataRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequestExtensions.swift; sourceTree = "<group>"; };
@@ -169,6 +177,15 @@
 				825E790C22C8A5BA008C45E5 /* CurveCalculator.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		825E790E22C8CECC008C45E5 /* FlightOverlayView */ = {
+			isa = PBXGroup;
+			children = (
+				825E790F22C8CF01008C45E5 /* FlightOverlayView.swift */,
+				825E791122C8CF29008C45E5 /* FlightOverlayViewModel.swift */,
+			);
+			path = FlightOverlayView;
 			sourceTree = "<group>";
 		};
 		82897ABF22C6BC660098B246 /* Appearance */ = {
@@ -302,6 +319,8 @@
 				82897AC422C800810098B246 /* DataRequestExtensions.swift */,
 				825E78FB22C81935008C45E5 /* StringExtensions.swift */,
 				825E790622C83AC4008C45E5 /* MKMapViewExtensions.swift */,
+				825E791322CA6601008C45E5 /* DoubleExtensions.swift */,
+				825E791522CA8DAD008C45E5 /* UIImageExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -409,6 +428,7 @@
 		82DD0E1B22C66ED500EDC424 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				825E790E22C8CECC008C45E5 /* FlightOverlayView */,
 				825E790822C8409F008C45E5 /* Renderer */,
 				825E78FF22C82C7A008C45E5 /* AirportAnnotation */,
 				82DD0E2422C6B8CD00EDC424 /* Placeholder */,
@@ -561,8 +581,10 @@
 				82DD0E1622C66B5600EDC424 /* CountryService.swift in Sources */,
 				825E790522C8344A008C45E5 /* MapPoints.swift in Sources */,
 				825E790322C830EB008C45E5 /* AirportAnnotationView.swift in Sources */,
+				825E791622CA8DAD008C45E5 /* UIImageExtensions.swift in Sources */,
 				82DD0DF722C65D5000EDC424 /* Constants.swift in Sources */,
 				82DD0DD622C65B5800EDC424 /* ReloadableTableViewController.swift in Sources */,
+				825E791022C8CF01008C45E5 /* FlightOverlayView.swift in Sources */,
 				82DD0E0822C6618700EDC424 /* Coordinate.swift in Sources */,
 				82DD0DDA22C65B5800EDC424 /* TableRow.swift in Sources */,
 				82DD0DD522C65B5800EDC424 /* ReloadableTableViewModel.swift in Sources */,
@@ -597,6 +619,7 @@
 				82DD0DE622C65B6200EDC424 /* UITableViewCellExtensions.swift in Sources */,
 				82DD0DE522C65B6200EDC424 /* ArrayExtensions.swift in Sources */,
 				82DD0E1222C6690400EDC424 /* NetworkService.swift in Sources */,
+				825E791422CA6601008C45E5 /* DoubleExtensions.swift in Sources */,
 				82DD0E1822C66B7100EDC424 /* SVGProcessor.swift in Sources */,
 				82DD0E1E22C66ED500EDC424 /* PlaceholderImageView.swift in Sources */,
 				82DD0DD122C65B5800EDC424 /* ViewController.swift in Sources */,
@@ -605,6 +628,7 @@
 				82DD0E0B22C6637B00EDC424 /* AirportCoordinator.swift in Sources */,
 				825E78FE22C82A69008C45E5 /* AirportPinView.swift in Sources */,
 				82DD0E1422C66B0300EDC424 /* JSONDecoderExtensions.swift in Sources */,
+				825E791222C8CF29008C45E5 /* FlightOverlayViewModel.swift in Sources */,
 				82DD0DDC22C65B5800EDC424 /* TableSection.swift in Sources */,
 				82DD0DD422C65B5800EDC424 /* StateViewController.swift in Sources */,
 				82DD0E0F22C663D100EDC424 /* AirportCoordinatorStorage.swift in Sources */,

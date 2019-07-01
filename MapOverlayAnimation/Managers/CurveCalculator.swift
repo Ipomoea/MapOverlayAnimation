@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct CurveCalculator {
 
-    let accuracy = 25
-
     func calculateSinusoidalWaveBetween(_ a: Coordinates, _ b: Coordinates) -> [Coordinates] {
+        let accuracy = 2500
+
         let x1 = a.latitude
         let y1 = a.longitude
         let x2 = b.latitude
@@ -30,9 +31,26 @@ struct CurveCalculator {
         return (0...accuracy).map {
             let t = Double($0) / Double(accuracy)
             return Coordinates(
-                latitude: K * (c * t - 0.3 * s * sin(2 * .pi * t)) + x1,
+                latitude: K * (c * t - 0.15 * s * sin(2 * .pi * t)) + x1,
                 longitude: K * (s * t + A * sin(2 * .pi * t)) + y1
             )
         }
+    }
+
+    func calculateCourseBetween(_ a: CLLocationCoordinate2D, _ b: CLLocationCoordinate2D) -> CLLocationDirection {
+
+        let lat1 = a.latitude.degreesToRadians()
+        let lon1 = a.longitude.degreesToRadians()
+
+        let lat2 = b.latitude.degreesToRadians()
+        let lon2 = b.longitude.degreesToRadians()
+
+        let dLon = lon2 - lon1
+
+        let y = sin(dLon) * cos(lat2)
+        let x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon)
+        let radiansBearing = atan2(y, x)
+
+        return radiansBearing
     }
 }

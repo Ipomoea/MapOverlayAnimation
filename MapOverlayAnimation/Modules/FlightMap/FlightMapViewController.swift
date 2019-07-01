@@ -25,6 +25,7 @@ final class FlightMapViewController: ViewController<FlightMapViewModel> {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] coordinates in
                 self?.addRoute(curve: coordinates)
+                self?.addAnimation(curve: coordinates)
             })
             .disposed(by: disposeBag)
     }
@@ -43,6 +44,11 @@ final class FlightMapViewController: ViewController<FlightMapViewModel> {
         let polyline = MKPolyline(coordinates: curve, count: curve.count)
         mapView.addOverlay(polyline)
     }
+
+    private func addAnimation(curve: [CLLocationCoordinate2D]) {
+        let overlay = FlightOverlayViewModel(locations: curve)
+        mapView.addOverlay(overlay)
+    }
 }
 
 extension FlightMapViewController: MKMapViewDelegate {
@@ -56,7 +62,9 @@ extension FlightMapViewController: MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if overlay is MKPolyline {
+        if let flightOverlay = overlay as? FlightOverlayViewModel {
+            return FlightOverlayView(overlay: flightOverlay)
+        } else if overlay is MKPolyline {
             return PolylineRenderer(overlay: overlay)
         }
 
