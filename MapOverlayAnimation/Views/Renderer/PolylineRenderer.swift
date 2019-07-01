@@ -12,7 +12,7 @@ final class PolylineRenderer: MKPolylineRenderer {
 
     override init(overlay: MKOverlay) {
         super.init(overlay: overlay)
-        lineDashPattern = [3.0, 3.0]
+        lineDashPattern = [1.0, 3.0]
         strokeColor = UIColor.moa.blueColor
     }
 }
