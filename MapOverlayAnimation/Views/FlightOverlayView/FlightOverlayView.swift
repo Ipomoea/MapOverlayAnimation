@@ -10,7 +10,7 @@ import MapKit
 
 final class FlightOverlayView: MKOverlayRenderer {
 
-    private let imageResource = #imageLiteral(resourceName: "plane")
+    private let imageResource = UIImage(named: "plane")?.cgImage
     private let viewModel: FlightOverlayViewModel
 
     init(overlay: FlightOverlayViewModel) {
@@ -25,12 +25,12 @@ final class FlightOverlayView: MKOverlayRenderer {
     override func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext) {
         super.draw(mapRect, zoomScale: zoomScale, in: context)
 
-        guard let imageReference = imageResource.cgImage?.rotated(by: viewModel.course) else {
+        guard let imageReference = imageResource?.rotated(by: viewModel.course) else {
             return
         }
 
-        let rect = self.rect(for: viewModel.imageRectForCurrentStep(scale: zoomScale))
-        context.translateBy(x: 0.0, y: -rect.size.height)
-        context.draw(imageReference, in: rect)
+        let convertedRect = rect(for: viewModel.imageRectForCurrentStep(scale: zoomScale))
+        context.translateBy(x: 0.0, y: -convertedRect.size.height)
+        context.draw(imageReference, in: convertedRect)
     }
 }
