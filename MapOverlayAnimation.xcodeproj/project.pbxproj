@@ -250,17 +250,17 @@
 		82C4FF0822C63C2D00B5F70F /* MapOverlayAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				829EAC2F22CB519700ADFC6D /* Resources */,
-				825E790B22C8A58E008C45E5 /* Managers */,
 				82897ABF22C6BC660098B246 /* Appearance */,
-				82DD0E1B22C66ED500EDC424 /* Views */,
-				82DD0E1022C668E700EDC424 /* Services */,
+				82DD0DBF22C65B5800EDC424 /* Base */,
 				82DD0E0922C6634C00EDC424 /* Coordinators */,
+				82DD0DDD22C65B6200EDC424 /* Extensions */,
+				825E790B22C8A58E008C45E5 /* Managers */,
 				82DD0E0422C660EE00EDC424 /* Models */,
 				82DD0DF822C65DF400EDC424 /* Modules */,
-				82DD0DF122C65B7900EDC424 /* Protocol */,
-				82DD0DDD22C65B6200EDC424 /* Extensions */,
-				82DD0DBF22C65B5800EDC424 /* Base */,
+				82DD0DF122C65B7900EDC424 /* Protocols */,
+				829EAC2F22CB519700ADFC6D /* Resources */,
+				82DD0E1022C668E700EDC424 /* Services */,
+				82DD0E1B22C66ED500EDC424 /* Views */,
 				82C4FF0922C63C2D00B5F70F /* AppDelegate.swift */,
 				82C4FF1522C63C2F00B5F70F /* Info.plist */,
 			);
@@ -355,13 +355,13 @@
 			path = State;
 			sourceTree = "<group>";
 		};
-		82DD0DF122C65B7900EDC424 /* Protocol */ = {
+		82DD0DF122C65B7900EDC424 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				82DD0DF322C65B7900EDC424 /* ConfigurableView.swift */,
 				82897AC222C800600098B246 /* Cancelable.swift */,
 			);
-			path = Protocol;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		82DD0DF822C65DF400EDC424 /* Modules */ = {
