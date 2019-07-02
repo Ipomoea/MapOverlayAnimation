@@ -25,6 +25,7 @@
 		82897AC522C800810098B246 /* DataRequestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897AC422C800810098B246 /* DataRequestExtensions.swift */; };
 		82897AC822C80B580098B246 /* FlightMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897AC722C80B580098B246 /* FlightMapViewController.swift */; };
 		82897ACA22C80B650098B246 /* FlightMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897AC922C80B650098B246 /* FlightMapViewModel.swift */; };
+		829EAC3322CB51E700ADFC6D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 829EAC3522CB51E700ADFC6D /* Localizable.strings */; };
 		82C4FF0A22C63C2D00B5F70F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C4FF0922C63C2D00B5F70F /* AppDelegate.swift */; };
 		82C4FF1122C63C2F00B5F70F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82C4FF1022C63C2F00B5F70F /* Assets.xcassets */; };
 		82C4FF1422C63C2F00B5F70F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82C4FF1222C63C2F00B5F70F /* LaunchScreen.storyboard */; };
@@ -90,6 +91,9 @@
 		82897AC422C800810098B246 /* DataRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequestExtensions.swift; sourceTree = "<group>"; };
 		82897AC722C80B580098B246 /* FlightMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMapViewController.swift; sourceTree = "<group>"; };
 		82897AC922C80B650098B246 /* FlightMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMapViewModel.swift; sourceTree = "<group>"; };
+		829EAC2E22CB512F00ADFC6D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		829EAC3422CB51E700ADFC6D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		829EAC3622CB51EA00ADFC6D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		82C4FF0622C63C2D00B5F70F /* MapOverlayAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapOverlayAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C4FF0922C63C2D00B5F70F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82C4FF1022C63C2F00B5F70F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 		825E790B22C8A58E008C45E5 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				82DD0DEA22C65B7100EDC424 /* State */,
 				82DD0E1722C66B7100EDC424 /* SVGProcessor.swift */,
 				825E790C22C8A5BA008C45E5 /* CurveCalculator.swift */,
 			);
@@ -205,6 +210,25 @@
 			path = FlightMap;
 			sourceTree = "<group>";
 		};
+		829EAC2F22CB519700ADFC6D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				829EAC3022CB51C000ADFC6D /* Localization */,
+				82C4FF1222C63C2F00B5F70F /* LaunchScreen.storyboard */,
+				82DD0DF622C65D5000EDC424 /* Constants.swift */,
+				82C4FF1022C63C2F00B5F70F /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		829EAC3022CB51C000ADFC6D /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				829EAC3522CB51E700ADFC6D /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		82C4FEFD22C63C2D00B5F70F = {
 			isa = PBXGroup;
 			children = (
@@ -226,22 +250,18 @@
 		82C4FF0822C63C2D00B5F70F /* MapOverlayAnimation */ = {
 			isa = PBXGroup;
 			children = (
+				829EAC2F22CB519700ADFC6D /* Resources */,
 				825E790B22C8A58E008C45E5 /* Managers */,
 				82897ABF22C6BC660098B246 /* Appearance */,
 				82DD0E1B22C66ED500EDC424 /* Views */,
 				82DD0E1022C668E700EDC424 /* Services */,
 				82DD0E0922C6634C00EDC424 /* Coordinators */,
 				82DD0E0422C660EE00EDC424 /* Models */,
-				82DD0DFE22C65E8E00EDC424 /* Cells */,
 				82DD0DF822C65DF400EDC424 /* Modules */,
 				82DD0DF122C65B7900EDC424 /* Protocol */,
-				82DD0DEA22C65B7100EDC424 /* State */,
 				82DD0DDD22C65B6200EDC424 /* Extensions */,
 				82DD0DBF22C65B5800EDC424 /* Base */,
-				82DD0DF622C65D5000EDC424 /* Constants.swift */,
 				82C4FF0922C63C2D00B5F70F /* AppDelegate.swift */,
-				82C4FF1022C63C2F00B5F70F /* Assets.xcassets */,
-				82C4FF1222C63C2F00B5F70F /* LaunchScreen.storyboard */,
 				82C4FF1522C63C2F00B5F70F /* Info.plist */,
 			);
 			path = MapOverlayAnimation;
@@ -428,6 +448,7 @@
 		82DD0E1B22C66ED500EDC424 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				82DD0DFE22C65E8E00EDC424 /* Cells */,
 				825E790E22C8CECC008C45E5 /* FlightOverlayView */,
 				825E790822C8409F008C45E5 /* Renderer */,
 				825E78FF22C82C7A008C45E5 /* AirportAnnotation */,
@@ -508,6 +529,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 82C4FEFD22C63C2D00B5F70F;
 			productRefGroup = 82C4FF0722C63C2D00B5F70F /* Products */;
@@ -525,6 +547,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82C4FF1422C63C2F00B5F70F /* LaunchScreen.storyboard in Resources */,
+				829EAC3322CB51E700ADFC6D /* Localizable.strings in Resources */,
 				82C4FF1122C63C2F00B5F70F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -643,10 +666,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		829EAC3522CB51E700ADFC6D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				829EAC3422CB51E700ADFC6D /* en */,
+				829EAC3622CB51EA00ADFC6D /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		82C4FF1222C63C2F00B5F70F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				82C4FF1322C63C2F00B5F70F /* Base */,
+				829EAC2E22CB512F00ADFC6D /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -658,6 +691,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -719,6 +753,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -11,4 +11,8 @@ import Foundation
 extension String {
 
     static let empty = ""
+
+    func localized() -> String {
+        return NSLocalizedString(self, comment: "")
+    }
 }

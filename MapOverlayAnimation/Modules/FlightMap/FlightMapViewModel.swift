@@ -13,7 +13,7 @@ import RxSwift
 final class FlightMapViewModel: ControllerViewModel {
 
     var title: String {
-        return "Карта"
+        return "flight_map_title".localized()
     }
 
     var pinViewModels: [AirportPinViewModel] {

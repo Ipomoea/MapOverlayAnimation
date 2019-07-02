@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  MapOverlayAnimation
+
+  Created by Pavel Lukandiy on 02.07.2019.
+  Copyright © 2019 Pavel Lukandiy. All rights reserved.
+*/
+
+"global_search" = "Поиск";
+
+"global_error" = "Ошибка";
+"global_common_error" = "Что-то пошло не так";
+
+"airport_list_search_title" = "Поиск по городам или аэропортам";
+"airport_list_new_search" = "Начать новый поиск";
+"airport_list_no_results" = "Нет результатов";
+"airport_list_change_settings" = "Попробуйте изменить настройки поиска";
+
+"flight_map_title" = "Карта";

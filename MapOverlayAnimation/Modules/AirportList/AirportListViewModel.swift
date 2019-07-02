@@ -20,23 +20,23 @@ final class AirportListViewModel: ReloadableTableViewModel<AirportCellViewModel>
     }
 
     let errorViewModel = PlaceholderViewModel(
-        title: "Ошибка",
-        description: "Что-то пошло не так",
-        buttonTitle: "Начать новый поиск"
+        title: "global_error".localized(),
+        description: "global_common_error".localized(),
+        buttonTitle: "airport_list_new_search".localized()
     )
 
     let emptyViewModel = PlaceholderViewModel(
-        title: "Нет результатов",
-        description: "Попробуйте изменить настройки поиска",
-        buttonTitle: "Начать новый поиск"
+        title: "airport_list_no_results".localized(),
+        description: "airport_list_change_settings".localized(),
+        buttonTitle: "airport_list_new_search".localized()
     )
 
     override var title: String {
-        return "Поиск"
+        return "global_search".localized()
     }
 
     var searchTitle: String {
-        return "Поиск по городам или аэропортам"
+        return "airport_list_search_title".localized()
     }
 
     var stateDriver: Driver<State> {
