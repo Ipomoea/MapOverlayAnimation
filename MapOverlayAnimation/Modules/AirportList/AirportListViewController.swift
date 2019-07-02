@@ -73,7 +73,7 @@ final class AirportListViewController: ReloadableTableViewController<AirportCell
                     return state
                 }
 
-                return self.isSearchBarActive ? .content : state
+                return self.isSearchBarActive && state != .loading ? .content : state
             }
             .drive(onNext: { [weak self] state in
                 guard let self = self else {
