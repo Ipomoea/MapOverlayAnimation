@@ -61,13 +61,13 @@ final class AirportCell: TableViewCell, ConfigurableCell {
 
         airportNameLabel.snp.remakeConstraints { make in
             make.top.equalTo(countryImageView.snp.top)
-            make.trailing.greaterThanOrEqualToSuperview().inset(Constants.defaultSpacing)
+            make.trailing.lessThanOrEqualToSuperview().inset(Constants.defaultSpacing)
             make.leading.equalTo(countryImageView.snp.trailing).offset(Constants.defaultPadding)
         }
 
         cityTitleLabel.snp.remakeConstraints { make in
             make.bottom.equalTo(countryImageView.snp.bottom)
-            make.trailing.greaterThanOrEqualToSuperview().inset(Constants.defaultSpacing)
+            make.trailing.lessThanOrEqualToSuperview().inset(Constants.defaultSpacing)
             make.leading.equalTo(countryImageView.snp.trailing).offset(Constants.defaultPadding)
         }
 
